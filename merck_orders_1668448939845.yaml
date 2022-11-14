@@ -1,0 +1,226 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: merck_orders
+  x-lastModified: '2022-11-14T17:55:15.000Z'
+paths:
+  /orders:
+    get:
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: Success response
+          schema:
+            $ref: '#/definitions/order_output'
+          examples:
+            application/json:
+              order_id: MO237437
+              product_id: PI_00191
+              product_name: pn-nom
+              order_number: ON00101
+              price: '1000'
+              quantity_ordered: '2'
+              discout_percent: '20'
+              total: '1600'
+              product_details:
+                size: Large
+                color: Black
+              shipdate: '2022-11-10'
+              billdate: '2022-11-09'
+      parameters:
+        - name: orderid
+          in: query
+          description: ''
+          required: true
+          type: string
+          format: ''
+      operationId: getOrders
+      tags: []
+    post:
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: Success response
+          schema:
+            $ref: '#/definitions/post_order_output'
+          examples:
+            application/json:
+              orderid: order with order id 1234 posted successfully
+      parameters:
+        - name: body
+          in: body
+          description: ''
+          schema:
+            $ref: '#/definitions/order_input'
+      operationId: postOrders
+      consumes:
+        - application/json
+        - application/xml
+    put:
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: Success response
+          schema:
+            $ref: '#/definitions/put_order_output'
+          examples:
+            application/json:
+              orderid: order id modified successfully
+      parameters:
+        - name: body
+          in: body
+          description: ''
+          schema:
+            $ref: '#/definitions/put_order_input'
+      operationId: putOrders
+      consumes:
+        - application/json
+        - application/xml
+definitions:
+  order_output:
+    type: object
+    properties:
+      order_id:
+        type: string
+        default: MO237437
+      product_id:
+        type: string
+        default: PI_00191
+      product_name:
+        type: string
+        default: pn-nom
+      order_number:
+        type: string
+        default: ON00101
+      price:
+        type: string
+        default: '1000'
+      quantity_ordered:
+        type: string
+        default: '2'
+      discout_percent:
+        type: string
+        default: '20'
+      total:
+        type: string
+        default: '1600'
+      product_details:
+        type: object
+        properties:
+          size:
+            type: string
+            default: Large
+          color:
+            type: string
+            default: Black
+      shipdate:
+        type: string
+        format: date
+        default: '2022-11-10'
+      billdate:
+        type: string
+        format: date
+        default: '2022-11-09'
+  order_input:
+    type: object
+    properties:
+      product_id:
+        type: string
+        default: PI_00191
+      product_name:
+        type: string
+        default: pn-nom
+      order_number:
+        type: string
+        default: ON00101
+      price:
+        type: string
+        default: '1000'
+      quantity_ordered:
+        type: string
+        default: '2'
+      discout_percent:
+        type: string
+        default: '20'
+      total:
+        type: string
+        default: '1600'
+      product_details:
+        type: object
+        properties:
+          size:
+            type: string
+            default: Large
+          color:
+            type: string
+            default: Black
+      shipdate:
+        type: string
+        format: date
+        default: '2022-11-10'
+      billdate:
+        type: string
+        format: date
+        default: '2022-11-09'
+  post_order_output:
+    type: object
+    properties:
+      orderid:
+        type: string
+        default: order with order id 1234 posted successfully
+  put_order_input:
+    type: object
+    properties:
+      order_id:
+        type: string
+        default: MO237437
+      product_id:
+        type: string
+        default: PI_00191
+      product_name:
+        type: string
+        default: pn-nom
+      order_number:
+        type: string
+        default: ON00101
+      price:
+        type: string
+        default: '1000'
+      quantity_ordered:
+        type: string
+        default: '2'
+      discout_percent:
+        type: string
+        default: '20'
+      total:
+        type: string
+        default: '1600'
+      product_details:
+        type: object
+        properties:
+          size:
+            type: string
+            default: Large
+          color:
+            type: string
+            default: Black
+      shipdate:
+        type: string
+        format: date
+        default: '2022-11-10'
+      billdate:
+        type: string
+        format: date
+        default: '2022-11-09'
+  put_order_output:
+    type: object
+    properties:
+      orderid:
+        type: string
+        default: order id modified successfully
